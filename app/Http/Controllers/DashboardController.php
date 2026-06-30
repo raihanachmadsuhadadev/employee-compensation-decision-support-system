@@ -79,6 +79,9 @@ class DashboardController extends Controller
             'ownerSummary' => $me->role === 'owner' ? $this->buildOwnerSummary($bulan, $tahun) : [],
             'hrSummary'  => $me->role === 'hr' ? $this->buildHrSummary($bulan, $tahun) : [],
             'leaderSummary' => $me->role === 'leader' ? $this->buildLeaderSummary($me, $bulan, $tahun) : [],
+            'karyawanSummary' => $me->role === 'karyawan'
+                ? $this->buildKaryawanSummary($me, $bulan, $tahun, $topGlobal, $topInDivisi)
+                : [],
         ]);
     }
 
@@ -196,6 +199,48 @@ class DashboardController extends Controller
         ];
     }
 
+    private function buildKaryawanSummary(User $employee, int $bulan, int $tahun, array $topGlobal, array $topInDivisi): array
+    {
+        $divisionId = $employee->division_id;
+        $kpiDivisiStatuses = [
+            'kuantitatif' => $this->statusCountsForUser(KpiDivisiKuantitatifRealization::query(), $employee->id, $bulan, $tahun),
+            'kualitatif' => $this->statusCountsForUser(KpiDivisiKualitatifRealization::query(), $employee->id, $bulan, $tahun),
+            'response' => $this->statusCountsForUser(KpiDivisiResponseRealization::query(), $employee->id, $bulan, $tahun),
+            'persentase' => $divisionId
+                ? $this->statusCountsForDivision(KpiDivisiPersentaseRealization::query(), $divisionId, $bulan, $tahun)
+                : $this->emptyStatusCounts(),
+        ];
+
+        $globalRow = collect($topGlobal)->firstWhere('name', $employee->full_name);
+        $divisionRow = collect($topInDivisi)->firstWhere('name', $employee->full_name);
+
+        return [
+            'division' => $employee->division,
+            'globalRank' => $globalRow['rank'] ?? null,
+            'globalScore' => $globalRow['score'] ?? null,
+            'divisionRank' => $divisionRow['rank'] ?? null,
+            'divisionScore' => $divisionRow['score'] ?? null,
+            'kpiUmumStatus' => $this->statusCountsForUser(KpiUmumRealization::query(), $employee->id, $bulan, $tahun),
+            'kpiDivisiStatus' => $kpiDivisiStatuses,
+            'kpiDivisiRealizationCount' => array_sum(array_map('array_sum', $kpiDivisiStatuses)),
+            'peerAssessment' => [
+                'assigned' => PeerAssessment::where('assessor_id', $employee->id)
+                    ->where('bulan', $bulan)
+                    ->where('tahun', $tahun)
+                    ->count(),
+                'submitted' => PeerAssessment::where('assessor_id', $employee->id)
+                    ->where('bulan', $bulan)
+                    ->where('tahun', $tahun)
+                    ->whereNotNull('submitted_at')
+                    ->count(),
+                'received' => PeerAssessment::where('assessee_id', $employee->id)
+                    ->where('bulan', $bulan)
+                    ->where('tahun', $tahun)
+                    ->count(),
+            ],
+        ];
+    }
+
     private function statusCounts($query, int $bulan, int $tahun): array
     {
         $counts = (clone $query)
@@ -242,6 +287,25 @@ class DashboardController extends Controller
         $counts = (clone $query)
             ->select('status', DB::raw('COUNT(*) as total'))
             ->whereIn('user_id', $userIds)
+            ->where('bulan', $bulan)
+            ->where('tahun', $tahun)
+            ->groupBy('status')
+            ->pluck('total', 'status')
+            ->all();
+
+        return [
+            'submitted' => (int) ($counts['submitted'] ?? 0),
+            'approved' => (int) ($counts['approved'] ?? 0),
+            'rejected' => (int) ($counts['rejected'] ?? 0),
+            'stale' => (int) ($counts['stale'] ?? 0),
+        ];
+    }
+
+    private function statusCountsForUser($query, int $userId, int $bulan, int $tahun): array
+    {
+        $counts = (clone $query)
+            ->select('status', DB::raw('COUNT(*) as total'))
+            ->where('user_id', $userId)
             ->where('bulan', $bulan)
             ->where('tahun', $tahun)
             ->groupBy('status')
