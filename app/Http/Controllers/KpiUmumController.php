@@ -39,11 +39,7 @@ class KpiUmumController extends Controller
                 ->appends(['search'=>$search,'per_page'=>$perPage]);
 
         $me = Auth::user();
-
-        $bulanList = [
-            1=>'Januari',2=>'Februari',3=>'Maret',4=>'April',5=>'Mei',6=>'Juni',
-            7=>'Juli',8=>'Agustus',9=>'September',10=>'Oktober',11=>'November',12=>'Desember'
-        ];
+        $bulanList = $this->bulanList();
 
         return view('kpi_umum.index', compact('kpis','search','perPage','bulanList','me'));
     }
@@ -64,7 +60,7 @@ class KpiUmumController extends Controller
 
         DB::transaction(function() use ($validated) {
             KpiUmum::create($validated);
-            // penambahan data → reset bobot & realisasi pada periode terkait
+            // penambahan data -> reset bobot & realisasi pada periode terkait
             $this->invalidateWeightsAndRealizations((int)$validated['bulan'], (int)$validated['tahun']);
         });
 
@@ -114,7 +110,7 @@ class KpiUmumController extends Controller
 
             $kpi->delete();
 
-            // pengurangan data → reset bobot & realisasi pada periode terkait
+            // pengurangan data -> reset bobot & realisasi pada periode terkait
             $this->invalidateWeightsAndRealizations($bulan, $tahun);
         });
 
@@ -128,7 +124,7 @@ class KpiUmumController extends Controller
      */
     private function invalidateWeightsAndRealizations(int $bulan, int $tahun): void
     {
-        // 1) reset bobot KPI periode tsb → 0
+        // 1) reset bobot KPI periode tsb -> 0
         KpiUmum::where('bulan',$bulan)->where('tahun',$tahun)->update(['bobot'=>0]);
 
         // 2) invalidate semua realisasi periode tsb
