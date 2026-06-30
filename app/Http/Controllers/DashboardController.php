@@ -76,6 +76,7 @@ class DashboardController extends Controller
             'topGlobal'  => $topGlobal,
             'topInDivisi'=> $topInDivisi,
             'topDivisi'  => $topDivisi,
+            'ownerSummary' => $me->role === 'owner' ? $this->buildOwnerSummary($bulan, $tahun) : [],
             'hrSummary'  => $me->role === 'hr' ? $this->buildHrSummary($bulan, $tahun) : [],
         ]);
     }
@@ -124,6 +125,11 @@ class DashboardController extends Controller
                     ->count(),
             ],
         ];
+    }
+
+    private function buildOwnerSummary(int $bulan, int $tahun): array
+    {
+        return $this->buildHrSummary($bulan, $tahun);
     }
 
     private function statusCounts($query, int $bulan, int $tahun): array
