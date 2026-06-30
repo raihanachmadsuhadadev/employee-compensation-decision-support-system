@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\KpiDivisi;
 use App\Models\Division;
+use App\Models\KpiDivisi;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class AhpKpiDivisiController extends Controller
 {
-    // Skala Saaty (1–9 saja)
+    // Skala Saaty (1-9 saja)
     private array $saatyOptions = [
         '1' => 'Sama penting (1)',
         '2' => 'Sedikit lebih penting (2)',
@@ -20,11 +20,6 @@ class AhpKpiDivisiController extends Controller
         '7' => 'Sangat lebih penting (7)',
         '8' => 'Antara sangat & sangat-sangat (8)',
         '9' => 'Sangat-sangat lebih penting (9)',
-    ];
-
-    private array $bulanList = [
-        1=>'Januari',2=>'Februari',3=>'Maret',4=>'April',5=>'Mei',6=>'Juni',
-        7=>'Juli',8=>'Agustus',9=>'September',10=>'Oktober',11=>'November',12=>'Desember'
     ];
 
     public function index(Request $request)
@@ -52,7 +47,7 @@ class AhpKpiDivisiController extends Controller
 
         return view('ahp-kpi-divisi.index', compact(
             'bulan','tahun','division_id','divisions','kpis','pairs'
-        ) + ['bulanList'=>$this->bulanList,'saatyOptions'=>$this->saatyOptions]);
+        ) + ['bulanList'=>$this->bulanList(),'saatyOptions'=>$this->saatyOptions]);
     }
 
     public function hitung(Request $request)
@@ -72,7 +67,7 @@ class AhpKpiDivisiController extends Controller
         $n = $kpis->count();
         if ($n < 2) return back()->with('error','Minimal 2 KPI Divisi pada periode tersebut.')->withInput();
 
-        // hanya 1..9 → parse float biasa
+        // hanya 1..9 -> parse float biasa
         $parse = fn(string $s): float => (float)$s;
 
         $A = array_fill(0,$n,array_fill(0,$n,1.0));
