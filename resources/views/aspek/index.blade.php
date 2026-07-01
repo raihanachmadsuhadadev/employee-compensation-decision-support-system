@@ -2,11 +2,30 @@
 
 @section('content')
     <div class="container py-4">
-        <div class="card">
-            {{-- Header --}}
-            <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
-                <h5 class="mb-0">Management Aspek</h5>
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="avatar avatar-md">
+                        <span class="avatar-initial rounded bg-label-primary">
+                            <i class="bx bx-list-check fs-3"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold mb-1">Aspek Penilaian</h3>
+                        <p class="text-muted mb-0">Kelola aspek yang digunakan dalam peer assessment karyawan.</p>
+                    </div>
+                </div>
+                @if ($me->role === 'hr')
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+                        <i class="bx bx-plus me-1"></i> Tambah Aspek
+                    </button>
+                @endif
+            </div>
+        </div>
 
+        <div class="card border-0 shadow-sm rounded">
+            {{-- Header --}}
+            <div class="card-header bg-white border-bottom py-3">
                 <div class="d-flex align-items-center ms-auto flex-wrap gap-2">
                     {{-- Per page --}}
                     <form id="filterForm" method="GET" action="{{ route('aspek.index') }}"
@@ -33,37 +52,32 @@
                                 value="{{ $search }}">
                         </div>
                         <input type="hidden" name="per_page" value="{{ $perPage }}">
-                        <button class="btn btn-secondary btn-sm" type="submit">Cari</button>
-                    </form>
-
-                    {{-- Add (HR only) --}}
-                    @if ($me->role === 'hr')
-                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createModal">
-                            <i class="bx bx-plus me-1"></i> Add
+                        <button class="btn btn-secondary btn-sm" type="submit">
+                            <i class="bx bx-search me-1"></i> Cari
                         </button>
-                    @endif
+                    </form>
                 </div>
             </div>
 
             {{-- Body --}}
-            <div class="card-body">
+            <div class="card-body p-0">
                 @if (session('success'))
-                    <div class="alert alert-success mb-3">{{ session('success') }}</div>
+                    <div class="alert alert-success m-3">{{ session('success') }}</div>
                 @endif
                 @if (session('error'))
-                    <div class="alert alert-danger mb-3">{{ session('error') }}</div>
+                    <div class="alert alert-danger m-3">{{ session('error') }}</div>
                 @endif
 
                 <div class="table-responsive" style="white-space: nowrap; overflow:auto; max-height:65vh;">
-                    <table class="table-hover table align-middle">
-                        <thead>
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
                             <tr>
                                 <th style="width:60px">#</th>
-                                <th>NAMA ASPEK</th>
-                                <th>BULAN</th>
-                                <th>TAHUN</th>
+                                <th>Nama Aspek</th>
+                                <th>Bulan</th>
+                                <th>Tahun</th>
                                 @if ($me->role === 'hr')
-                                    <th style="width:160px">ACTIONS</th>
+                                    <th class="text-center" style="width:160px">Aksi</th>
                                 @endif
                             </tr>
                         </thead>
@@ -72,12 +86,13 @@
                                 <tr>
                                     <td>{{ ($aspeks->currentPage() - 1) * $aspeks->perPage() + $i + 1 }}</td>
                                     <td class="fw-semibold">{{ $a->nama }}</td>
-                                    <td>{{ $bulanList[$a->bulan] ?? $a->bulan }}</td>
+                                    <td><span class="badge bg-label-secondary">{{ $bulanList[$a->bulan] ?? $a->bulan }}</span></td>
                                     <td>{{ $a->tahun }}</td>
                                     @if ($me->role === 'hr')
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <button class="btn btn-icon btn-sm btn-outline-secondary"
+                                                    data-bs-toggle="modal"
                                                     data-bs-target="#editModal" data-id="{{ $a->id }}"
                                                     data-nama="{{ $a->nama }}" data-bulan="{{ $a->bulan }}"
                                                     data-tahun="{{ $a->tahun }}">
@@ -86,7 +101,7 @@
                                                 <form action="{{ route('aspek.destroy', $a) }}" method="POST"
                                                     class="js-delete d-inline">
                                                     @csrf @method('DELETE')
-                                                    <button class="btn btn-sm btn-outline-danger" type="submit">
+                                                    <button class="btn btn-icon btn-sm btn-outline-danger" type="submit">
                                                         <i class="bx bx-trash"></i>
                                                     </button>
                                                 </form>
@@ -96,8 +111,10 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="{{ $me->role === 'hr' ? 5 : 4 }}" class="text-muted py-4 text-center">
-                                        Belum ada data.</td>
+                                    <td colspan="{{ $me->role === 'hr' ? 5 : 4 }}" class="text-muted py-5 text-center">
+                                        <i class="bx bx-list-check d-block mb-2 fs-3"></i>
+                                        Belum ada aspek penilaian pada periode ini.
+                                    </td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -110,11 +127,14 @@
                     $to = $aspeks->count() ? $aspeks->lastItem() : 0;
                     $total = $aspeks->total();
                 @endphp
-                <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap gap-2">
+            </div>
+
+            <div class="card-footer bg-white py-3">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
                     <small class="text-muted">Showing {{ $from }} to {{ $to }} of {{ $total }}
                         entries</small>
                     @if ($aspeks->hasPages())
-                        {{ $aspeks->onEachSide(1)->links() }}
+                        {{ $aspeks->onEachSide(1)->links('vendor.pagination.sneat') }}
                     @else
                         <nav>
                             <ul class="pagination mb-0">

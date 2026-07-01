@@ -2,20 +2,47 @@
 
 @section('content')
     <div class="container py-4">
-        <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <div>
-                    <h5 class="mb-0">Penilaian Rekan Satu Divisi</h5>
-                    <small class="text-muted">
-                        Dinilai: <strong>{{ $assessee->full_name }}</strong> — {{ $assessee->division?->name ?? '-' }}
-                        • Periode {{ $bulanList[$bulan] }} {{ $tahun }}
-                    </small>
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="avatar avatar-md">
+                        <span class="avatar-initial rounded bg-label-info">
+                            <i class="bx bx-user-check fs-3"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold mb-1">Input Peer Assessment</h3>
+                        <p class="text-muted mb-0">Berikan penilaian untuk rekan satu divisi sesuai aspek yang tersedia.</p>
+                    </div>
                 </div>
                 <a href="{{ route('peer.index', ['bulan' => $bulan, 'tahun' => $tahun]) }}"
-                    class="btn btn-sm btn-outline-secondary">Kembali</a>
+                    class="btn btn-outline-secondary">
+                    <i class="bx bx-arrow-back me-1"></i> Kembali
+                </a>
             </div>
+        </div>
 
+        <div class="card border-0 shadow-sm mb-4">
             <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <span class="text-muted small">Karyawan Dinilai</span>
+                        <h5 class="fw-semibold mb-0">{{ $assessee->full_name }}</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="text-muted small">Divisi</span>
+                        <h5 class="fw-semibold mb-0">{{ $assessee->division?->name ?? '-' }}</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="text-muted small">Periode</span>
+                        <h5 class="fw-semibold mb-0">{{ $bulanList[$bulan] }} {{ $tahun }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm rounded">
+            <div class="card-body p-0">
                 <form method="POST" action="{{ route('peer.store') }}">
                     @csrf
                     <input type="hidden" name="assessee_id" value="{{ $assessee->id }}">
@@ -23,11 +50,11 @@
                     <input type="hidden" name="tahun" value="{{ $tahun }}">
 
                     <div class="table-responsive" style="white-space:nowrap;max-height:65vh;overflow:auto;">
-                        <table class="table-hover table align-middle">
+                        <table class="table table-hover align-middle mb-0">
                             <thead class="table-light">
                                 <tr>
                                     <th style="min-width:320px;">Aspek</th>
-                                    <th style="width:240px;">Skor (1–10)</th>
+                                    <th style="width:240px;">Skor (1-10)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,9 +75,9 @@
                         </table>
                     </div>
 
-                    <div class="d-flex justify-content-end mt-3">
+                    <div class="d-flex justify-content-end border-top p-3">
                         <button type="submit" class="btn btn-primary">
-                            <i class="bx bx-send me-1"></i> Kirim Penilaian
+                            <i class="bx bx-save me-1"></i> Kirim Penilaian
                         </button>
                     </div>
                 </form>
