@@ -4,7 +4,7 @@
     <div class="container py-4">
         <div class="card">
             <div class="card-header">
-                <h5 class="mb-2">Realisasi KPI Divisi — Kualitatif</h5>
+                <h5 class="mb-2">Realisasi KPI Divisi - Kualitatif</h5>
 
                 <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
                     {{-- Per Page --}}

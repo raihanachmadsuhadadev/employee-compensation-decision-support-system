@@ -2,17 +2,17 @@
 
 @section('content')
     <div class="container py-4">
-        <div class="card">
+        <div class="card border-0 shadow-sm rounded">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <div>
-                    <h5 class="mb-1">Detail Distribusi</h5>
+                    <h5 class="mb-1"><i class="bx bx-git-branch me-1"></i>Detail Distribusi Target</h5>
                     <small class="text-muted">
-                        {{ $kpi->nama }} • {{ $kpi->division?->name ?? '-' }} •
+                        {{ $kpi->nama }} - {{ $kpi->division?->name ?? '-' }} -
                         {{ $bulanList[$distribution->bulan] ?? $distribution->bulan }} {{ $distribution->tahun }}
                     </small>
                 </div>
                 <a href="{{ route('distribusi-kpi-divisi.index', ['bulan' => $distribution->bulan, 'tahun' => $distribution->tahun, 'division_id' => $distribution->division_id]) }}"
-                    class="btn btn-sm btn-outline-secondary">Kembali</a>
+                    class="btn btn-sm btn-outline-secondary"><i class="bx bx-arrow-back me-1"></i>Kembali</a>
             </div>
 
             <div class="card-body">
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="table-responsive" style="max-height:65vh; overflow:auto;">
-                    <table class="table-hover table align-middle">
+                    <table class="table table-hover align-middle mb-0">
                         <thead class="table-light">
                             <tr>
                                 <th>Nama Karyawan</th>
@@ -58,7 +58,7 @@
                                     $sum += $v;
                                 @endphp
                                 <tr>
-                                    <td>{{ $emp->full_name }}</td>
+                                    <td class="fw-semibold">{{ $emp->full_name }}</td>
                                     <td class="text-end">{{ rtrim(rtrim(number_format($v, 2, '.', ''), '0'), '.') }}</td>
                                 </tr>
                             @endforeach
@@ -66,7 +66,7 @@
                     </table>
                 </div>
 
-                <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="d-flex justify-content-between align-items-center border-top mt-3 pt-3">
                     <div class="small text-muted">
                         Total alokasi:
                         <strong>{{ rtrim(rtrim(number_format($sum, 2, '.', ''), '0'), '.') }} {{ $kpi->satuan }}</strong>

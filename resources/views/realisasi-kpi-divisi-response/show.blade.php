@@ -2,15 +2,15 @@
 
 @section('content')
     <div class="container py-4">
-        <div class="card">
+        <div class="card border-0 shadow-sm rounded">
             <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <div>
-                    <h5 class="mb-0">Detail Realisasi (Response) — {{ $real->user->full_name }}</h5>
-                    <small class="text-muted">{{ $bulanList[$real->bulan] }} {{ $real->tahun }} •
+                    <h5 class="mb-0"><i class="bx bx-message-square-check me-1"></i>Detail Realisasi KPI Divisi Response - {{ $real->user->full_name }}</h5>
+                    <small class="text-muted">{{ $bulanList[$real->bulan] }} {{ $real->tahun }} -
                         {{ $real->division?->name }}</small>
                 </div>
                 <a href="{{ route('realisasi-kpi-divisi-response.index', ['bulan' => $real->bulan, 'tahun' => $real->tahun, 'division_id' => $real->division_id]) }}"
-                    class="btn btn-sm btn-outline-secondary">Kembali</a>
+                    class="btn btn-sm btn-outline-secondary"><i class="bx bx-arrow-back me-1"></i>Kembali</a>
             </div>
 
             <div class="card-body">
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="table-responsive" style="max-height:65vh; overflow:auto; white-space:nowrap;">
-                    <table class="table-hover table align-middle">
+                    <table class="table table-hover align-middle mb-0">
                         <thead class="table-light">
                             <tr>
                                 <th>Nama KPI</th>
@@ -87,7 +87,7 @@
                             </button>
                         </form>
 
-                        <button class="btn btn-danger" onclick="rejectReal()">Tolak</button>
+                        <button class="btn btn-danger" onclick="rejectReal()"><i class="bx bx-x me-1"></i> Tolak</button>
                         <form id="rejectForm" method="POST"
                             action="{{ route('realisasi-kpi-divisi-response.reject', $real->id) }}" class="d-none">
                             @csrf

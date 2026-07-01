@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="container py-4">
-        <div class="card">
+        <div class="card border-0 shadow-sm rounded">
             <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <h5 class="mb-0">Input Realisasi (Response) — {{ $user->full_name }} • {{ $bulanList[$bulan] }}
+                <h5 class="mb-0"><i class="bx bx-message-square-check me-1"></i>Input Realisasi KPI Divisi Response - {{ $user->full_name }} - {{ $bulanList[$bulan] }}
                     {{ $tahun }}</h5>
                 <a href="{{ route('realisasi-kpi-divisi-response.index', ['bulan' => $bulan, 'tahun' => $tahun, 'division_id' => $user->division_id]) }}"
-                    class="btn btn-sm btn-outline-secondary">Kembali</a>
+                    class="btn btn-sm btn-outline-secondary"><i class="bx bx-arrow-back me-1"></i>Kembali</a>
             </div>
 
             <div class="card-body">
@@ -22,7 +22,7 @@
                     <input type="hidden" name="tahun" value="{{ $tahun }}">
 
                     <div class="table-responsive" style="max-height:65vh; overflow:auto; white-space:nowrap;">
-                        <table class="table-hover table align-middle">
+                        <table class="table table-hover align-middle mb-0">
                             <thead class="table-light">
                                 <tr>
                                     <th style="min-width:280px;">Nama KPI</th>
@@ -52,8 +52,8 @@
                         </table>
                     </div>
 
-                    <div class="d-flex justify-content-end mt-3">
-                        <button type="submit" class="btn btn-primary"><i class="bx bx-send me-1"></i> Ajukan</button>
+                    <div class="d-flex justify-content-end border-top mt-3 pt-3">
+                        <button type="submit" class="btn btn-primary"><i class="bx bx-save me-1"></i> Ajukan</button>
                     </div>
                 </form>
             </div>

@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="container py-4">
-        <div class="card">
+        <div class="card border-0 shadow-sm rounded">
             <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <h5 class="mb-0">Input Realisasi (Persentase) — {{ $kpi->nama }}</h5>
+                <h5 class="mb-0"><i class="bx bx-pie-chart-alt-2 me-1"></i>Input Realisasi KPI Divisi Persentase - {{ $kpi->nama }}</h5>
                 <a href="{{ route('realisasi-kpi-divisi-persentase.index', ['bulan' => $kpi->bulan, 'tahun' => $kpi->tahun, 'division_id' => $kpi->division_id]) }}"
-                    class="btn btn-sm btn-outline-secondary">Kembali</a>
+                    class="btn btn-sm btn-outline-secondary"><i class="bx bx-arrow-back me-1"></i>Kembali</a>
             </div>
 
             <div class="card-body">
@@ -50,8 +50,8 @@
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-end mt-3">
-                        <button type="submit" class="btn btn-primary"><i class="bx bx-send me-1"></i> Ajukan</button>
+                    <div class="d-flex justify-content-end border-top mt-3 pt-3">
+                        <button type="submit" class="btn btn-primary"><i class="bx bx-save me-1"></i> Ajukan</button>
                     </div>
                 </form>
             </div>

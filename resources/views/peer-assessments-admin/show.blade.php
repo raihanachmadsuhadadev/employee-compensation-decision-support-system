@@ -2,28 +2,44 @@
 
 @section('content')
     <div class="container py-4">
-        <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <div>
-                    <h5 class="mb-1">Detail Penilaian</h5>
-                    <small class="text-muted">
-                        {{ $user->full_name }} — {{ $user->division?->name ?? '-' }} |
-                        Periode: {{ $bulanList[$bulan] ?? $bulan }} {{ $tahun }}
-                    </small>
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="avatar avatar-md">
+                        <span class="avatar-initial rounded bg-label-info">
+                            <i class="bx bx-user-check fs-3"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold mb-1">Detail Peer Assessment</h3>
+                        <p class="text-muted mb-0">
+                            {{ $user->full_name }} - {{ $user->division?->name ?? '-' }} -
+                            {{ $bulanList[$bulan] ?? $bulan }} {{ $tahun }}
+                        </p>
+                    </div>
                 </div>
                 <a href="{{ route('peer.admin.index', ['bulan' => $bulan, 'tahun' => $tahun, 'division_id' => request('division_id')]) }}"
-                    class="btn btn-light btn-sm">
-                    <i class="bx bx-left-arrow-alt me-1"></i>Kembali
+                    class="btn btn-outline-secondary">
+                    <i class="bx bx-arrow-back me-1"></i> Kembali
                 </a>
             </div>
 
-            <div class="card-body">
+        </div>
+
+        <div class="card border-0 shadow-sm rounded">
+            <div class="card-body p-0">
                 @if ($assessments->isEmpty())
-                    <div class="alert alert-info">Belum ada penilaian yang masuk.</div>
+                    <div class="text-muted py-5 text-center">
+                        <i class="bx bx-user-check d-block mb-2 fs-3"></i>
+                        Belum ada penilaian yang masuk.
+                    </div>
                 @else
-                    <h6 class="mb-2">Nilai per Penilai</h6>
-                    <div class="table-responsive mb-4" style="white-space:nowrap;">
-                        <table class="table-sm table align-middle">
+                    <div class="border-bottom p-3">
+                        <h6 class="fw-semibold mb-1">Nilai per Penilai</h6>
+                        <p class="text-muted mb-0">Rekap skor setiap penilai untuk karyawan terpilih.</p>
+                    </div>
+                    <div class="table-responsive" style="white-space:nowrap;">
+                        <table class="table table-sm table-hover align-middle mb-0">
                             <thead class="table-light">
                                 <tr>
                                     <th style="width:220px">Penilai</th>
@@ -47,9 +63,12 @@
                         </table>
                     </div>
 
-                    <h6 class="mb-2">Rata-rata per Aspek</h6>
+                    <div class="border-top border-bottom p-3">
+                        <h6 class="fw-semibold mb-1">Rata-rata per Aspek</h6>
+                        <p class="text-muted mb-0">Ringkasan nilai rata-rata yang digunakan pada proses penilaian.</p>
+                    </div>
                     <div class="table-responsive" style="white-space:nowrap;">
-                        <table class="table-sm table align-middle">
+                        <table class="table table-sm table-hover align-middle mb-0">
                             <thead class="table-light">
                                 <tr>
                                     @foreach ($columns as $c)

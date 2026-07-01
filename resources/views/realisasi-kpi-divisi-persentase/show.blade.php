@@ -2,17 +2,17 @@
 
 @section('content')
     <div class="container py-4">
-        <div class="card">
+        <div class="card border-0 shadow-sm rounded">
             <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <div>
-                    <h5 class="mb-0">Detail Realisasi — Persentase</h5>
+                    <h5 class="mb-0"><i class="bx bx-pie-chart-alt-2 me-1"></i>Detail Realisasi KPI Divisi Persentase</h5>
                     <small class="text-muted">
-                        {{ $real->kpi?->nama }} • {{ $bulanList[$real->bulan] }} {{ $real->tahun }} •
+                        {{ $real->kpi?->nama }} - {{ $bulanList[$real->bulan] }} {{ $real->tahun }} -
                         {{ $real->division?->name }}
                     </small>
                 </div>
                 <a href="{{ route('realisasi-kpi-divisi-persentase.index', ['bulan' => $real->bulan, 'tahun' => $real->tahun, 'division_id' => $real->division_id]) }}"
-                    class="btn btn-sm btn-outline-secondary">Kembali</a>
+                    class="btn btn-sm btn-outline-secondary"><i class="bx bx-arrow-back me-1"></i>Kembali</a>
             </div>
 
             <div class="card-body">
@@ -95,7 +95,7 @@
                                     <i class="bx bx-check me-1"></i> ACC
                                 </button>
                             </form>
-                            <button class="btn btn-danger" onclick="rejectReal()">Tolak</button>
+                            <button class="btn btn-danger" onclick="rejectReal()"><i class="bx bx-x me-1"></i> Tolak</button>
                             <form id="rejectForm" method="POST"
                                 action="{{ route('realisasi-kpi-divisi-persentase.reject', $real->id) }}" class="d-none">
                                 @csrf

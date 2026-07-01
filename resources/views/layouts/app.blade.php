@@ -9,12 +9,6 @@
             min-width: 0;
         }
 
-        .portfolio-demo-badge {
-            background: rgba(105, 108, 255, .12);
-            border: 1px solid rgba(105, 108, 255, .18);
-            color: #696cff;
-        }
-
         .portfolio-menu-brand {
             border-bottom: 1px solid rgba(67, 89, 113, .08);
             margin-bottom: .35rem;
@@ -89,11 +83,6 @@
                         </div>
 
                         <ul class="navbar-nav align-items-center ms-auto flex-row">
-                            <li class="nav-item me-3 d-none d-md-flex">
-                                <span class="badge rounded-pill portfolio-demo-badge">Portfolio Demo</span>
-                            </li>
-
-
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"

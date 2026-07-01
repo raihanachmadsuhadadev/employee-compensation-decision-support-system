@@ -2,25 +2,61 @@
 
 @section('content')
     <div class="container py-4">
-        <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Input Realisasi — {{ $user->full_name }} ({{ $bulan }}/{{ $tahun }})</h5>
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="avatar avatar-md">
+                        <span class="avatar-initial rounded bg-label-primary">
+                            <i class="bx bx-task fs-3"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold mb-1">Input Realisasi KPI Umum</h3>
+                        <p class="text-muted mb-0">
+                            Isi realisasi KPI umum untuk {{ $user->full_name }} pada periode {{ $bulan }}/{{ $tahun }}.
+                        </p>
+                    </div>
+                </div>
                 <a href="{{ route('realisasi-kpi-umum.index', ['bulan' => $bulan, 'tahun' => $tahun]) }}"
-                    class="btn btn-sm btn-outline-secondary">Kembali</a>
+                    class="btn btn-outline-secondary">
+                    <i class="bx bx-arrow-back me-1"></i> Kembali
+                </a>
             </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-4">
             <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <span class="text-muted small">Karyawan</span>
+                        <h5 class="fw-semibold mb-0">{{ $user->full_name }}</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="text-muted small">Divisi</span>
+                        <h5 class="fw-semibold mb-0">{{ $user->division?->name ?? '-' }}</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="text-muted small">Periode</span>
+                        <h5 class="fw-semibold mb-0">{{ $bulan }}/{{ $tahun }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm rounded">
+            <div class="card-body p-0">
                 <form method="POST" action="{{ route('realisasi-kpi-umum.store', $user->id) }}">
                     @csrf
                     <input type="hidden" name="bulan" value="{{ $bulan }}">
                     <input type="hidden" name="tahun" value="{{ $tahun }}">
 
                     <div class="table-responsive" style="overflow-y:auto; max-height:65vh;">
-                        <table class="table-hover table align-middle">
+                        <table class="table table-hover align-middle mb-0">
                             <thead class="table-light">
                                 <tr>
-                                    <th>NAMA KPI</th>
-                                    <th>TIPE</th>
-                                    <th>SATUAN</th>
+                                    <th>Nama KPI</th>
+                                    <th>Tipe</th>
+                                    <th>Satuan</th>
                                     <th class="text-end">TARGET</th>
                                     <th class="text-end" style="width:180px;">REALISASI</th>
                                     <th class="text-end">SKOR (LIVE)</th>
@@ -33,7 +69,7 @@
                                     @endphp
                                     <tr>
                                         <td class="fw-semibold">{{ $k->nama }}</td>
-                                        <td class="text-uppercase">{{ $k->tipe }}</td>
+                                        <td><span class="badge bg-label-secondary text-capitalize">{{ $k->tipe }}</span></td>
                                         <td>{{ $k->satuan ?? '-' }}</td>
                                         <td class="text-end">
                                             {{ rtrim(rtrim(number_format($k->target, 2, '.', ''), '0'), '.') }}</td>
@@ -44,7 +80,7 @@
                                                 data-tipe="{{ $k->tipe }}" data-target="{{ (float) $k->target }}"
                                                 value="{{ $ex?->realisasi ?? 0 }}" required>
                                         </td>
-                                        <td class="js-score text-end">0</td>
+                                        <td class="text-end"><span class="badge bg-label-primary js-score">0</span></td>
                                     </tr>
                                     <input type="hidden" name="items[{{ $k->id }}][kpi_id]"
                                         value="{{ $k->id }}">
@@ -59,8 +95,8 @@
                         </table>
                     </div>
 
-                    <div class="d-flex justify-content-end mt-3">
-                        <button class="btn btn-primary" type="submit"><i class="bx bx-send me-1"></i> Simpan
+                    <div class="d-flex justify-content-end border-top p-3">
+                        <button class="btn btn-primary" type="submit"><i class="bx bx-save me-1"></i> Simpan
                             (Ajukan)</button>
                     </div>
                 </form>
@@ -75,7 +111,7 @@
         // === KONSTANTA harus sama dengan backend ===
         const CAP_MAX = 200.0; // sama dgn controller
 
-        // === Triangular membership μ(x; a,b,c) ===
+        // === Triangular membership mu(x; a,b,c) ===
         function tri(x, a, b, c) {
             if (x <= a || x >= c) return 0.0;
             if (x === b) return 1.0;
