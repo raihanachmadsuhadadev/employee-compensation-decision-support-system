@@ -1,12 +1,23 @@
-# SPK Kenaikan Gaji dan Bonus Karyawan
+# Employee Salary Increase and Bonus Decision Support System
 
-Aplikasi Sistem Pendukung Keputusan (SPK) untuk membantu proses evaluasi performa karyawan, rekomendasi bonus, dan rekomendasi kenaikan gaji pada PT Alvarel Technology Innovation.
+Aplikasi Sistem Pendukung Keputusan (SPK) berbasis web untuk membantu proses evaluasi performa karyawan, rekomendasi bonus, dan rekomendasi kenaikan gaji dalam konteks academic company case study.
 
 ## Deskripsi Project
 
-SPK Kenaikan Gaji dan Bonus Karyawan adalah aplikasi berbasis web yang membantu pengelolaan evaluasi performa karyawan secara lebih terstruktur. Aplikasi ini mengelola data karyawan, divisi, KPI, realisasi kerja, peer assessment, leaderboard, serta rekomendasi bonus dan kenaikan gaji.
+SPK Kenaikan Gaji dan Bonus Karyawan adalah aplikasi berbasis web yang membantu pengelolaan evaluasi performa karyawan secara lebih terstruktur. Aplikasi ini mengelola data karyawan, divisi, KPI, realisasi kerja, peer assessment, leaderboard, serta rekomendasi bonus dan kenaikan gaji pada sebuah academic company case study.
 
 Hasil rekomendasi dari sistem digunakan sebagai bahan pertimbangan bagi pihak terkait, bukan sebagai keputusan mutlak yang menggantikan proses evaluasi manajemen.
+
+## My Role
+
+Saya mengembangkan project ini sebagai academic final project dan bertanggung jawab pada proses perancangan hingga implementasi aplikasi. Ruang lingkup pekerjaan saya meliputi:
+
+- Menganalisis kebutuhan sistem dan role pengguna.
+- Merancang struktur database.
+- Mengembangkan fitur aplikasi web berbasis Laravel.
+- Mengimplementasikan multi-role access untuk owner, HR, leader, dan karyawan.
+- Membangun modul KPI, pembobotan AHP, peer assessment, leaderboard, dan rekomendasi.
+- Menyiapkan data demo, screenshot, dan dokumentasi untuk kebutuhan portfolio.
 
 ## Latar Belakang
 
@@ -57,7 +68,7 @@ Proses evaluasi karyawan membutuhkan data yang konsisten dari berbagai sumber, s
 6. Sistem menampilkan leaderboard dan rekomendasi.
 7. Owner dan HR dapat melihat hasil sebagai bahan pertimbangan.
 
-## Metode Yang Digunakan
+## Metode yang Digunakan
 
 Aplikasi ini menggunakan KPI sebagai indikator performa, AHP untuk pembobotan kriteria, peer assessment sebagai komponen penilaian, serta perhitungan skor untuk leaderboard dan rekomendasi. Kombinasi metode tersebut membantu proses evaluasi menjadi lebih terstruktur dan berbasis data.
 
@@ -66,9 +77,9 @@ Aplikasi ini menggunakan KPI sebagai indikator performa, AHP untuk pembobotan kr
 - Laravel 12
 - PHP 8.2+
 - PostgreSQL
-- Blade Template
+- Blade Template Engine
 - Vite
-- Bootstrap/Sneat Assets
+- Bootstrap / Sneat UI Template
 - Composer
 - NPM
 
@@ -197,3 +208,9 @@ Screenshot aplikasi dapat disimpan pada folder `docs/screenshots/`.
 - Hasil rekomendasi digunakan sebagai bahan pertimbangan, bukan keputusan mutlak.
 - Pengembangan dapat dilanjutkan dengan validasi data lebih lanjut, pengujian otomatis, dan peningkatan keamanan.
 - Project ini juga digunakan sebagai bahan dokumentasi dan showcase pengembangan aplikasi berbasis Laravel.
+
+## Project Status
+
+- Project ini telah diselesaikan sebagai academic final project.
+- Project saat ini dipelihara sebagai portfolio project untuk dokumentasi kemampuan pengembangan aplikasi web berbasis Laravel.
+- Pengembangan lanjutan yang memungkinkan meliputi automated testing, validasi input yang lebih kuat, peningkatan keamanan, arsitektur berbasis API, persiapan deployment, dan penyempurnaan UI/UX.
