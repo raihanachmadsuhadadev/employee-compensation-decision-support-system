@@ -15,13 +15,14 @@
             padding-bottom: .85rem;
         }
 
-        .portfolio-menu-logo {
-            width: 42px;
-            height: 42px;
-            object-fit: contain;
-            border-radius: .75rem;
-            background: #fff;
-            box-shadow: 0 .125rem .375rem rgba(67, 89, 113, .12);
+        .app-logo-title {
+            font-size: 15px;
+            line-height: 1.25;
+        }
+
+        .app-logo-subtitle {
+            font-size: 11px;
+            line-height: 1.3;
         }
 
         .layout-menu .menu-header {
@@ -77,8 +78,8 @@
 
                         <div class="navbar-nav align-items-center me-auto">
                             <div class="nav-item d-flex flex-column portfolio-navbar-title">
-                                <span class="fw-semibold text-truncate">{{ $pageTitle ?? 'SPK Kenaikan Gaji dan Bonus' }}</span>
-                                <small class="text-muted text-truncate">PT Alvarel Technology Innovation</small>
+                                <span class="fw-semibold text-truncate">{{ $pageTitle ?? 'Compensation Decision Support System' }}</span>
+                                <small class="text-muted text-truncate">Employee Evaluation & Compensation</small>
                             </div>
                         </div>
 

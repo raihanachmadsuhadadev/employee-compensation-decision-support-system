@@ -1,11 +1,7 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo px-3 portfolio-menu-brand">
         <a href="{{ route('dashboard.index') }}" class="d-flex align-items-center overflow-hidden">
-            <img src="{{ asset('assets/img/alvarel-mini.png') }}" alt="Logo" class="portfolio-menu-logo me-2" />
-            <span class="d-flex flex-column overflow-hidden">
-                <span class="fw-bold text-uppercase text-truncate" style="font-size: 12px;">SPK Alvarel</span>
-                <span class="text-muted text-truncate" style="font-size: 10px;">Gaji & Bonus Karyawan</span>
-            </span>
+            <x-app-logo />
         </a>
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large d-block d-xl-none ms-auto">
             <i class="bx bx-chevron-left bx-sm align-middle"></i>

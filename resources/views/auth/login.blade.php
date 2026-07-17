@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
+    <title>Login | Compensation DSS</title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -34,6 +34,9 @@
             font-size: 22px;
             font-weight: 700;
         }
+
+        .app-logo-title { font-size: 18px; }
+        .app-logo-subtitle { font-size: 12px; }
 
         .form-control:focus,
         .input-group-text:focus {
@@ -77,11 +80,8 @@
             <div class="card-body p-sm-5 p-4">
 
                 <div class="mb-4 text-center">
-                    <img src="{{ asset('assets/img/alvarel-mini.png') }}" alt="Logo"
-                        style="height: 80px; width: 80px; border-radius: 16px;">
-                    <div class="fw-bold mt-2" style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">
-                        PT ALVAREL TECHNOLOGY INNOVATION
-                    </div>
+                    <div class="fw-bold" style="font-size: 22px; line-height: 1.25;">Compensation DSS</div>
+                    <div class="text-muted" style="font-size: 14px; line-height: 1.4;">Decision Support System</div>
                 </div>
 
                 <!-- Form -->
