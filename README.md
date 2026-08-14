@@ -1,130 +1,136 @@
 # Employee Compensation Decision Support System
 
-Employee Compensation Decision Support System adalah aplikasi web untuk membantu proses evaluasi karyawan, pengelolaan KPI, pembobotan kriteria, realisasi KPI, peer assessment, leaderboard, serta rekomendasi kenaikan gaji dan bonus berbasis sistem pendukung keputusan.
+Employee Compensation Decision Support System is a web-based decision support application designed to support employee evaluation, KPI management, criteria weighting, KPI realization, peer assessment, performance leaderboard, salary increase recommendation, and bonus recommendation.
 
-Aplikasi ini dirancang untuk membantu proses evaluasi kompensasi karyawan agar data KPI, realisasi performa, penilaian antar karyawan, dan hasil rekomendasi dapat dikelola secara lebih terstruktur.
+The system helps organize compensation evaluation data so that employee performance, KPI realization, peer assessment results, and recommendation outputs can be managed in a more structured and transparent way.
 
-## Ringkasan Sistem
+## System Overview
 
-Sistem mendukung alur evaluasi karyawan dan penyusunan rekomendasi kompensasi berdasarkan tanggung jawab setiap role:
+This application supports the employee evaluation and compensation recommendation workflow based on several user roles:
 
-- HR mengelola data karyawan, divisi, KPI, AHP weighting, aspek penilaian, realisasi KPI, dan laporan rekomendasi.
-- Leader mengelola atau meninjau realisasi KPI serta performa karyawan dalam divisinya.
-- Employee dapat melihat KPI, mengisi peer assessment, dan melihat informasi performa sesuai akses.
-- Owner / Management dapat memantau dashboard, leaderboard, serta hasil rekomendasi kenaikan gaji dan bonus.
+* HR manages employee data, divisions, KPI data, AHP weighting, assessment aspects, KPI realization, and recommendation reports.
+* Leaders manage or review KPI realization and employee performance within their division.
+* Employees can view KPI information, submit peer assessments, and access their own performance information based on their permissions.
+* Owner / Management can monitor dashboards, leaderboards, salary increase recommendations, and bonus recommendations.
 
-Hasil rekomendasi merupakan informasi pendukung pengambilan keputusan dan tetap memerlukan peninjauan dari pihak manajemen yang berwenang.
+The recommendation results are intended to support decision-making and still require final review by authorized management.
 
 ## Developer Role
 
-- Menganalisis workflow evaluasi karyawan, KPI, peer assessment, dan rekomendasi kompensasi.
-- Merancang struktur data untuk user, role, divisi, KPI, AHP weighting, realisasi KPI, peer assessment, leaderboard, dan rekomendasi.
-- Mengembangkan aplikasi web menggunakan Laravel, Blade, PostgreSQL, Vite, Tailwind CSS, Bootstrap, dan Sneat UI.
-- Mengimplementasikan authentication dan role-based access untuk Owner / Management, HR, Leader, dan Employee.
-- Mengembangkan fitur user management, division management, KPI management, AHP weighting, realisasi KPI, peer assessment, leaderboard, rekomendasi kenaikan gaji, rekomendasi bonus, dan reports.
-- Menyiapkan akun demo, screenshot aplikasi, dan dokumentasi project.
+The development responsibilities in this project included:
+
+* Analyzing employee evaluation workflows, KPI management, peer assessment, and compensation recommendation processes.
+* Designing the data structure for users, roles, divisions, KPIs, AHP weighting, KPI realization, peer assessment, leaderboards, and recommendations.
+* Developing the web application using Laravel, Blade, PostgreSQL, Vite, Tailwind CSS, Bootstrap, and Sneat UI.
+* Implementing authentication and role-based access for Owner / Management, HR, Leader, and Employee.
+* Developing user management, division management, KPI management, AHP weighting, KPI realization, peer assessment, leaderboard, salary increase recommendation, bonus recommendation, and reporting features.
+* Preparing demo accounts, application screenshots, and project documentation.
 
 ## Tech Stack
 
 ### Backend
 
-- Laravel 12
-- PHP 8.2+
-- PostgreSQL
+* Laravel 12
+* PHP 8.2+
+* PostgreSQL
 
 ### Frontend
 
-- Blade Template Engine
-- Vite
-- JavaScript
+* Blade Template Engine
+* Vite
+* JavaScript
 
 ### Styling
 
-- Tailwind CSS
-- Bootstrap
-- Sneat UI Template
+* Tailwind CSS
+* Bootstrap
+* Sneat UI Template
 
 ### Authentication
 
-- Custom Role-Based Authentication
+* Custom Role-Based Authentication
 
 ### Decision Support
 
-- AHP-based Weighting
-- KPI Evaluation
-- Peer Assessment
-- Compensation Recommendation
+* AHP-Based Weighting
+* KPI Evaluation
+* Peer Assessment
+* Compensation Recommendation
 
 ### Tools
 
-- Composer
-- NPM
-- Git
+* Composer
+* NPM
+* Git
 
-## Fitur Utama
+## Main Features
 
-### Authentication & Role
+### Authentication & Role Access
 
-- Authentication dan role-based access.
-- Menu dan tindakan yang disesuaikan dengan tanggung jawab setiap role.
-- Dashboard ringkasan evaluasi karyawan.
+* User authentication.
+* Role-based access control.
+* Menus and actions adjusted according to each role.
+* Evaluation dashboard summary.
 
 ### Master Data
 
-- Manajemen data user dan role.
-- Manajemen divisi dan data karyawan.
+* User and role management.
+* Division management.
+* Employee data management.
 
 ### KPI Management & AHP Weighting
 
-- Manajemen KPI umum dan KPI divisi.
-- Pembobotan prioritas kriteria menggunakan AHP.
+* General KPI management.
+* Division KPI management.
+* Criteria priority weighting using the AHP method.
 
 ### KPI Realization & Peer Assessment
 
-- Input dan validasi realisasi KPI karyawan.
-- Peer assessment antar karyawan.
-- Perhitungan nilai akhir evaluasi.
+* Employee KPI realization input.
+* KPI realization validation.
+* Peer assessment between employees.
+* Final evaluation score calculation.
 
 ### Leaderboard, Recommendation & Reports
 
-- Leaderboard performa karyawan dan divisi.
-- Rekomendasi kenaikan gaji.
-- Rekomendasi bonus karyawan.
-- Laporan hasil rekomendasi.
+* Employee and division performance leaderboard.
+* Salary increase recommendation.
+* Employee bonus recommendation.
+* Recommendation result reports.
 
-## Role & Akses
+## Roles & Access
 
-Menu yang terlihat dan tindakan yang tersedia mengikuti tanggung jawab serta cakupan akses masing-masing role.
+Visible menus and available actions follow each role’s responsibility and access scope.
 
 ### Owner / Management
 
-- Melihat dashboard dan ringkasan evaluasi organisasi.
-- Memantau data karyawan, KPI, dan realisasi performa.
-- Melihat leaderboard karyawan dan divisi.
-- Meninjau rekomendasi kenaikan gaji dan bonus sebagai bahan pengambilan keputusan.
+* View organizational evaluation dashboard and summaries.
+* Monitor employee data, KPI data, and performance realization.
+* View employee and division leaderboards.
+* Review salary increase and bonus recommendations as decision-support information.
 
 ### HR
 
-- Mengelola data user, karyawan, divisi, KPI, dan aspek penilaian.
-- Menentukan bobot prioritas kriteria menggunakan AHP.
-- Meninjau dan memvalidasi realisasi KPI.
-- Memantau peer assessment dan proses evaluasi kompensasi.
-- Meninjau laporan rekomendasi kenaikan gaji dan bonus.
+* Manage users, employees, divisions, KPIs, and assessment aspects.
+* Define criteria priority weights using AHP.
+* Review and validate KPI realization.
+* Monitor peer assessments and compensation evaluation processes.
+* Review salary increase and bonus recommendation reports.
 
 ### Leader
 
-- Melihat data dan performa anggota divisi.
-- Mendistribusikan target KPI divisi.
-- Mengisi atau meninjau realisasi KPI anggota divisi.
-- Memantau leaderboard dan rekomendasi sesuai cakupan akses.
+* View division member data and performance.
+* Distribute division KPI targets.
+* Input or review KPI realization for division members.
+* Monitor leaderboards and recommendations within the allowed access scope.
 
 ### Employee
 
-- Melihat KPI, realisasi, dan hasil evaluasi miliknya sesuai akses.
-- Mengisi peer assessment antar karyawan.
-- Melihat leaderboard serta informasi rekomendasi yang tersedia.
+* View assigned KPIs, realization data, and evaluation results based on access.
+* Submit peer assessments.
+* View available leaderboard and recommendation information.
 
-## Struktur Project
+## Project Structure
 
 ```text
 employee-compensation-decision-support-system/
@@ -141,7 +147,7 @@ employee-compensation-decision-support-system/
 
 ## Screenshots
 
-Screenshot berikut menunjukkan alur utama aplikasi, mulai dari authentication hingga hasil rekomendasi kompensasi.
+The following screenshots show the main application workflow from authentication to compensation recommendation results.
 
 ### Login
 
@@ -175,137 +181,88 @@ Screenshot berikut menunjukkan alur utama aplikasi, mulai dari authentication hi
 
 ![Compensation Recommendation](docs/screenshots/08-compensation-recommendation.png)
 
-## Persiapan Environment
+## Requirements
 
-Pastikan perangkat pengembangan telah memiliki:
+Make sure the local development environment has:
 
-- PHP 8.2+
-- Composer
-- Node.js
-- npm
-- PostgreSQL
-- Git
+* PHP 8.2+
+* Composer
+* Node.js
+* npm
+* PostgreSQL
+* Git
 
 ## Installation
 
-Clone repository dan masuk ke direktori project:
+Clone the repository and enter the project directory:
 
 ```bash
 git clone https://github.com/raihanachmadsuhadadev/employee-compensation-decision-support-system.git
 cd employee-compensation-decision-support-system
 ```
 
-Install dependency backend dan frontend:
+Install backend and frontend dependencies:
 
 ```bash
 composer install
 npm install
 ```
 
-Salin file environment dan buat application key:
+Copy the environment file:
 
 ```bash
 cp .env.example .env
-php artisan key:generate
 ```
 
-Pada Windows PowerShell, file environment dapat disalin dengan:
+For Windows PowerShell:
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-Sesuaikan koneksi database, lalu jalankan migration dan seeder:
+Generate the application key:
 
 ```bash
-php artisan migrate:fresh --seed
+php artisan key:generate
 ```
 
-Jalankan Laravel development server:
+Configure the PostgreSQL database connection in `.env`, then run migrations and seeders:
 
 ```bash
-php artisan serve --host=127.0.0.1 --port=8000
+php artisan migrate --seed
 ```
 
-Jalankan Vite pada terminal terpisah:
+Run the development servers:
 
 ```bash
+php artisan serve
 npm run dev
 ```
 
-Aplikasi dapat diakses melalui `http://127.0.0.1:8000`.
+Open the application in the browser:
 
-## Environment Example
-
-Contoh konfigurasi utama pada file `.env`:
-
-```env
-APP_NAME="Employee Compensation Decision Support System"
-APP_URL=http://127.0.0.1:8000
-
-DB_CONNECTION=pgsql
-DB_HOST=127.0.0.1
-DB_PORT=5432
-DB_DATABASE=employee_compensation_decision_support
-DB_USERNAME=postgres
-DB_PASSWORD=your_password
+```text
+http://127.0.0.1:8000
 ```
 
-## Akun Demo
+## Demo Accounts
 
-Seeder menyediakan akun berikut untuk mencoba akses setiap role. Seluruh akun menggunakan password `password`.
+Demo accounts are intended only for local testing and demonstration.
 
-| Role | Username |
-| --- | --- |
-| Owner / Management | `owner` |
-| HR | `hradmin` |
-| Leader - Technical Support | `saepul` |
-| Leader - Chat Sales | `diar` |
-| Leader - Creative Design | `cahyono` |
-| Employee | `handika`, `devan`, `rizal`, `ariyani`, `akmal`, `ratna`, `laela` |
-
-## Alur Penggunaan Sistem
-
-1. HR mengelola data user, role, divisi, karyawan, KPI, dan aspek penilaian.
-2. HR mengatur bobot prioritas kriteria menggunakan AHP.
-3. Leader atau HR mengelola target dan realisasi KPI sesuai cakupan akses.
-4. Employee mengisi peer assessment sesuai periode penilaian.
-5. Sistem menghitung nilai evaluasi berdasarkan KPI, bobot kriteria, realisasi performa, dan peer assessment.
-6. Sistem menampilkan leaderboard performa karyawan dan divisi.
-7. Sistem menghasilkan rekomendasi kenaikan gaji dan bonus.
-8. Owner / Management dan HR meninjau hasil rekomendasi sebagai bahan pendukung keputusan.
-
-## Decision Support Method
-
-Sistem menggabungkan beberapa komponen evaluasi untuk menghasilkan informasi pendukung keputusan kompensasi:
-
-- KPI digunakan sebagai indikator utama evaluasi performa.
-- AHP digunakan untuk menentukan bobot prioritas kriteria.
-- Realisasi KPI digunakan untuk menghitung tingkat pencapaian karyawan.
-- Peer assessment memberikan perspektif tambahan dalam proses penilaian.
-- Nilai akhir digunakan untuk mendukung rekomendasi kenaikan gaji dan bonus.
-
-Hasil rekomendasi merupakan informasi pendukung dan tetap memerlukan peninjauan dari pihak manajemen yang berwenang. Sistem tidak menggantikan keputusan akhir organisasi.
-
-## Validasi Build
-
-Bersihkan cache aplikasi dan periksa daftar route Laravel:
-
-```bash
-php artisan optimize:clear
-php artisan route:list
-```
-
-Validasi production build frontend:
-
-```bash
-npm run build
-```
+If the project includes seeded demo users, check the database seeder or project documentation for available credentials.
 
 ## Project Status
 
-Aplikasi telah diselesaikan sebagai sistem pendukung keputusan kompensasi karyawan berbasis web. Sistem mencakup manajemen KPI, AHP weighting, realisasi KPI, peer assessment, leaderboard, rekomendasi kenaikan gaji, rekomendasi bonus, dan laporan.
+**Completed**
 
-Pengembangan dapat dilanjutkan dengan automated testing, validasi yang lebih kuat, audit log, laporan lanjutan, fitur export, konfigurasi deployment, dan penyempurnaan UI/UX.
+The core features for role-based access, KPI management, AHP weighting, KPI realization, peer assessment, leaderboard, salary increase recommendation, bonus recommendation, reporting, screenshots, and documentation have been completed.
 
+## Project Scope
 
+This project focuses on a web-based employee compensation decision support system.
+
+The system is not intended to fully replace management decision-making. Recommendation results should be reviewed by authorized stakeholders before being used for real compensation decisions.
+
+## Purpose
+
+This project was developed as a portfolio project to demonstrate skills in Laravel web development, database design, role-based system development, KPI workflow implementation, decision-support logic, and project documentation.
